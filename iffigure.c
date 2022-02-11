@@ -5,6 +5,7 @@
 #define __FALSE        0
 #define _STRING_LENGTH 100
 #define _INVALID_VALUE -919949
+#define __IS_CIRCLE    11
 
 typedef struct
 {
@@ -15,10 +16,14 @@ typedef struct
 
 int _if_circle(char *figure)
 {
-  if (figure[0] == 'c' && figure[1] == 'i' && figure[2] == 'r' &&
-      figure[3] == 'c' && figure[4] == 'l' && figure[5] == 'e')
+  if ((figure[0] == 'c' || figure[0] == 'C') &&
+      (figure[1] == 'i' || figure[1] == 'I') &&
+      (figure[2] == 'r' || figure[2] == 'R') &&
+      (figure[3] == 'c' || figure[3] == 'C') &&
+      (figure[4] == 'l' || figure[4] == 'L') &&
+      (figure[5] == 'e' || figure[5] == 'E'))
   {
-    return __TRUE;
+    return __IS_CIRCLE;
   }
   else
     return __FALSE;
@@ -29,6 +34,13 @@ int _if_staples(char *figure)
   int i = 0;
 
   while (figure[i] != '(')
+  {
+    if (i == strlen(figure))
+      return __FALSE;
+    i++;
+  }
+
+  while (figure[i] != ')')
   {
     if (i == strlen(figure))
       return __FALSE;
@@ -110,5 +122,7 @@ int _if_coordinates(Circle coordinates)
 {
   if (coordinates.x == _INVALID_VALUE || coordinates.y == _INVALID_VALUE ||
       coordinates.radius == _INVALID_VALUE)
-    return 0;
+    return __FALSE;
+  else
+    return __TRUE;
 }

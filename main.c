@@ -7,12 +7,11 @@ int main()
   int flagCircle = 0;
   int flagStaples = 0;
   int flagCoordinates = 0;
-  int i;
 
-  printf("Введите фигуру: ");
+  printf("Введите данные фигуры согласно образцу:\n");
+  printf("circle(0 0, 1.5)\n");
+  printf("Ввод: ");
   fgets(Figure, _STRING_LENGTH, stdin);
-
-  i = 0;
 
   flagStaples = _if_staples(Figure);
   flagCircle = _if_circle(Figure);
@@ -23,10 +22,8 @@ int main()
   {
     printf("Название фигуры: ");
 
-    for (i = 0; Figure[i] != '('; i++)
-    {
-      printf("%c", Figure[i]);
-    }
+    if (flagCircle == __IS_CIRCLE)
+      printf("Circle");
 
     printf("\n");
   }
@@ -41,7 +38,7 @@ int main()
     printf("Скобки введены не по образцу.\n");
   }
 
-  if (flagCoordinates)
+  if (flagCoordinates != 0)
   {
     printf("Координата X: %.4f\n", circle.x);
     printf("Координата Y: %.4f\n", circle.y);

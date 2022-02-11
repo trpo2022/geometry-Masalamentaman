@@ -1,7 +1,6 @@
-all: myprog
-myprog: myprog.c
-	gсс -Wall -Werror -o myprog myprog.c
+main: main.c
+	gcc -Wall -Werror -o main main.c
 clean:
-	rm myprog
+	rm main
 run:
-	./myprog
+	./main
