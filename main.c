@@ -4,17 +4,17 @@
 
 typedef struct
 {
-    float x;
-    float y;
-    float radius;
+  float x;
+  float y;
+  float radius;
 } Circle;
 
 int main()
 {
-    Circle circle;
-    char Figure[_STRING_LENGTH];
+  Circle circle;
+  char Figure[_STRING_LENGTH];
 
-    printf("Введите фигуру: ");
-    fgets(Figure, _STRING_LENGTH, stdin);
-    printf("%s", Figure);
+  printf("Введите фигуру: ");
+  fgets(Figure, _STRING_LENGTH, stdin);
+  printf("%s", Figure);
 }
