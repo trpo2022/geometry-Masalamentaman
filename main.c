@@ -16,6 +16,5 @@ int main()
 
     printf("Введите фигуру: ");
     fgets(Figure, _STRING_LENGTH, stdin);
-
     printf("%s", Figure);
 }
