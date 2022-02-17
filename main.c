@@ -1,28 +1,27 @@
-#include "iffigure.c"
+#include "iffigure.h"
 
 int main()
 {
   Circle circle;
   char Figure[_STRING_LENGTH];
-  int flagCircle = 0;
-  int flagStaples = 0;
-  int flagCoordinates = 0;
+  int flag_circle = 0;
+  int flag_staples = 0;
 
   printf("Введите данные фигуры согласно образцу:\n");
   printf("circle(0 0, 1.5)\n");
   printf("Ввод: ");
   fgets(Figure, _STRING_LENGTH, stdin);
 
-  flagStaples = _if_staples(Figure);
-  flagCircle = _if_circle(Figure);
+  flag_staples = _if_staples(Figure);
+  flag_circle = _if_circle(Figure);
   circle = _read_coordinates(Figure);
-  flagCoordinates = _if_coordinates(circle);
+  _check_coordinates(&circle);
 
-  if (flagCircle)
+  if (flag_circle)
   {
     printf("Название фигуры: ");
 
-    if (flagCircle == __IS_CIRCLE)
+    if (flag_circle == __IS_CIRCLE)
       printf("Circle");
 
     printf("\n");
@@ -33,24 +32,26 @@ int main()
     printf("Название фигуры: INCORRECT\n");
   }
 
-  if (!flagStaples)
+  if (!flag_staples)
   {
     printf("Скобки введены не по образцу.\n");
   }
 
-  if (flagCoordinates != 0)
-  {
+  if (circle.flag_x)
     printf("Координата X: %.4f\n", circle.x);
-    printf("Координата Y: %.4f\n", circle.y);
-    printf("Радиус: %.4f\n", circle.radius);
-  }
 
   else
-  {
     printf("Координата X: INCORRECT\n");
+
+  if (circle.flag_y)
+    printf("Координата Y: %.4f\n", circle.y);
+  else
     printf("Координата Y: INCORRECT\n");
+
+  if (circle.flag_radius)
+    printf("Радиус: %.4f\n", circle.radius);
+  else
     printf("Радиус: INCORRECT\n");
-  }
 
   return 0;
 }
