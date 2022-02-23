@@ -3,14 +3,14 @@
 int main()
 {
   Circle circle;
-  char Figure[_STRING_LENGTH];
+  char Figure[STRING_LENGTH];
   int flag_circle = 0;
   int flag_staples = 0;
 
   printf("Введите данные фигуры согласно образцу:\n");
   printf("circle(0 0, 1.5)\n");
   printf("Ввод: ");
-  fgets(Figure, _STRING_LENGTH, stdin);
+  fgets(Figure, STRING_LENGTH, stdin);
 
   flag_staples = _if_staples(Figure);
   flag_circle = _if_circle(Figure);
@@ -21,7 +21,7 @@ int main()
   {
     printf("Название фигуры: ");
 
-    if (flag_circle == __IS_CIRCLE)
+    if (flag_circle == IS_CIRCLE)
       printf("Circle");
 
     printf("\n");
@@ -34,7 +34,7 @@ int main()
 
   if (!flag_staples)
   {
-    printf("Скобки введены не по образцу.\n");
+    printf("Скобки введены не по образцу. Возможны ошибки в значениях.\n");
   }
 
   if (circle.flag_x)

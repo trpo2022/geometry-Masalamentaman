@@ -2,11 +2,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define __TRUE         1
-#define __FALSE        0
-#define _STRING_LENGTH 100
-#define _INVALID_VALUE -919939
-#define __IS_CIRCLE    11
+#define TRUE          1
+#define FALSE         0
+#define STRING_LENGTH 100
+#define INVALID_VALUE -919939
+#define IS_CIRCLE     11
 
 typedef struct
 {
@@ -20,51 +20,54 @@ typedef struct
 
 int _if_circle(char *figure)
 {
-  if ((figure[0] == 'c' || figure[0] == 'C') &&
-      (figure[1] == 'i' || figure[1] == 'I') &&
-      (figure[2] == 'r' || figure[2] == 'R') &&
-      (figure[3] == 'c' || figure[3] == 'C') &&
-      (figure[4] == 'l' || figure[4] == 'L') &&
-      (figure[5] == 'e' || figure[5] == 'E'))
+  int i = 0;
+
+  while ((figure[i] < 'a' || figure[i] > 'z') &&
+         (figure[i] < 'A' || figure[i] > 'Z'))
+    i++;
+  if ((figure[i + 0] == 'c' || figure[i + 0] == 'C') &&
+      (figure[i + 1] == 'i' || figure[i + 1] == 'I') &&
+      (figure[i + 2] == 'r' || figure[i + 2] == 'R') &&
+      (figure[i + 3] == 'c' || figure[i + 3] == 'C') &&
+      (figure[i + 4] == 'l' || figure[i + 4] == 'L') &&
+      (figure[i + 5] == 'e' || figure[i + 5] == 'E'))
   {
-    return __IS_CIRCLE;
+    return IS_CIRCLE;
   }
   else
-    return __FALSE;
+    return FALSE;
 }
 
 int _if_staples(char *figure)
 {
   int i = 0;
+  int first = 0, second = 0;
 
-  while (figure[i] != '(')
+  for (i = 0; i < strlen(figure); i++)
   {
-    if (i == strlen(figure))
-      return __FALSE;
-    i++;
+    if (figure[i] == '(')
+      first++;
+    if (figure[i] == ')')
+      second++;
   }
 
-  while (figure[i] != ')')
-  {
-    if (i == strlen(figure))
-      return __FALSE;
-    i++;
-  }
+  if (first > 1 || second > 1)
+    return FALSE;
 
-  return __TRUE;
+  return TRUE;
 }
 
 Circle _read_coordinates(char *figure)
 {
-  Circle coordinates = {.x = _INVALID_VALUE,
-                        .y = _INVALID_VALUE,
-                        .radius = _INVALID_VALUE,
+  Circle coordinates = {.x = INVALID_VALUE,
+                        .y = INVALID_VALUE,
+                        .radius = INVALID_VALUE,
                         .flag_x = 1,
                         .flag_y = 1,
                         .flag_radius = 1};
-  char coordinateX[_STRING_LENGTH];
-  char coordinateY[_STRING_LENGTH];
-  char radius[_STRING_LENGTH];
+  char coordinateX[STRING_LENGTH];
+  char coordinateY[STRING_LENGTH];
+  char radius[STRING_LENGTH];
   int i = 0;
 
   while (!(isdigit(figure[i])))
@@ -185,11 +188,11 @@ Circle _read_coordinates(char *figure)
 
 void _check_coordinates(Circle *coordinates)
 {
-  if (coordinates->x == _INVALID_VALUE)
+  if (coordinates->x == INVALID_VALUE)
     coordinates->flag_x = 0;
-  if (coordinates->y == _INVALID_VALUE)
+  if (coordinates->y == INVALID_VALUE)
     coordinates->flag_y = 0;
-  if (coordinates->radius == _INVALID_VALUE)
+  if (coordinates->radius == INVALID_VALUE)
     coordinates->flag_radius = 0;
 
   return;
