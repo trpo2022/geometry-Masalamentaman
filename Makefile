@@ -1,6 +1,13 @@
-main: main.c
-	gcc -Wall -Werror -g -o main main.c
-clean:
-	rm main
-run:
-	./main
+CFLAGS = -Wall -Wextra -Werror
+CPPFLAGS = -MMD
+
+iffigure: main.o iffigure.o
+	$(CC) $(CFLAGS) -o $@ $^
+
+main.o: main.c
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) -o $@ $<
+
+iffigure.o: iffigure.c
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) -o $@ $<
+
+-include main.d iffigure.d

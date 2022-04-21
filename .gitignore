@@ -1,6 +1,8 @@
 *.i
 *.o
 *.s
+*.d
 *.log
 *.txt
 main
+iffigure
