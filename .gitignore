@@ -2,7 +2,8 @@
 *.o
 *.s
 *.d
+*.a
+bin/hello
 *.log
 *.txt
 main
-iffigure

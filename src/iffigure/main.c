@@ -1,4 +1,4 @@
-#include "iffigure.h"
+#include <libiffigure/iffigure.h>
 
 int main(void)
 {
